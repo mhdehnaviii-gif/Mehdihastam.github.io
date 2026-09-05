@@ -1,894 +1,283 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>گیت گیت | حمایت از موزیک</title>
-
-<style>
-@font-face {
-  font-family: "Golpayegani";
-  src: url("Golpayegani.woff2") format("woff2");
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  overflow-x: hidden;
-  background: #070707;
-  color: #fff;
-  font-family: "Golpayegani", serif;
-}
-
-/* پس‌زمینه */
-
-.background {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: -10;
-
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(255, 110, 0, .14),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 10% 90%,
-      rgba(255, 170, 0, .10),
-      transparent 28%
-    ),
-    #070707;
-}
-
-/* شبکه */
-
-.grid {
-  position: absolute;
-  inset: -50%;
-  opacity: .18;
-
-  background-image:
-    linear-gradient(
-      rgba(255, 122, 0, .18) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 122, 0, .18) 1px,
-      transparent 1px
-    );
-
-  background-size: 55px 55px;
-
-  transform:
-    perspective(450px)
-    rotateX(60deg)
-    translateY(20%);
-
-  animation: gridMove 10s linear infinite;
-}
-
-@keyframes gridMove {
-  from {
-    transform:
-      perspective(450px)
-      rotateX(60deg)
-      translateY(0);
-  }
-
-  to {
-    transform:
-      perspective(450px)
-      rotateX(60deg)
-      translateY(55px);
-  }
-}
-
-/* نورهای پس‌زمینه */
-
-.glow {
-  position: absolute;
-
-  width: 420px;
-  height: 420px;
-
-  border-radius: 50%;
-
-  filter: blur(80px);
-
-  background: rgba(255, 105, 0, .12);
-
-  animation:
-    glowMove 8s ease-in-out infinite alternate;
-}
-
-.glow.one {
-  top: -160px;
-  left: -130px;
-}
-
-.glow.two {
-  right: -180px;
-  bottom: -140px;
-
-  animation-delay: -3s;
-}
-
-@keyframes glowMove {
-  to {
-    transform:
-      translate(100px, 70px)
-      scale(1.3);
-  }
-}
-
-/* حباب‌های کارتونی */
-
-.bubble {
-  position: absolute;
-
-  border: 2px solid
-    rgba(255, 122, 0, .5);
-
-  border-radius: 50%;
-
-  animation:
-    bubbleFloat 7s ease-in-out infinite;
-}
-
-.b1 {
-  width: 70px;
-  height: 70px;
-  top: 12%;
-  left: 5%;
-}
-
-.b2 {
-  width: 25px;
-  height: 25px;
-  top: 30%;
-  right: 8%;
-  animation-delay: -2s;
-}
-
-.b3 {
-  width: 45px;
-  height: 45px;
-  bottom: 18%;
-  left: 9%;
-  animation-delay: -4s;
-}
-
-.b4 {
-  width: 90px;
-  height: 90px;
-  bottom: 8%;
-  right: 5%;
-  animation-delay: -1s;
-}
-
-@keyframes bubbleFloat {
-
-  0%, 100% {
-    transform:
-      translateY(0)
-      rotate(0);
-  }
-
-  50% {
-    transform:
-      translateY(-35px)
-      rotate(15deg);
-  }
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* نت‌های موسیقی */
+  <title>به زودی</title>
 
-.note {
-  position: absolute;
+  <!-- فونت نستعلیق -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400&display=swap" rel="stylesheet">
 
-  color: #ff7a00;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  font-size: 32px;
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
 
-  text-shadow:
-    0 0 15px
-    rgba(255, 122, 0, .65);
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  animation:
-    noteFloat 6s ease-in-out infinite;
-}
+      background: #0b0508;
+      position: relative;
+    }
 
-.n1 {
-  top: 10%;
-  right: 18%;
-}
+    /* لایه‌های نورانی و چرخان */
 
-.n2 {
-  top: 26%;
-  left: 15%;
-  animation-delay: -2s;
-}
+    body::before {
+      content: "";
+      position: absolute;
 
-.n3 {
-  top: 55%;
-  right: 7%;
-  animation-delay: -4s;
-}
+      width: 130vw;
+      height: 130vw;
 
-.n4 {
-  bottom: 15%;
-  left: 23%;
-  animation-delay: -1s;
-}
+      background:
+        conic-gradient(
+          from 0deg,
+          #ff5a00,
+          #ff1493,
+          #ff7a00,
+          #ff2d95,
+          #ff8c00,
+          #ff1493,
+          #ff5a00
+        );
 
-.n5 {
-  bottom: 25%;
-  right: 20%;
-  animation-delay: -3s;
-}
+      border-radius: 50%;
 
-@keyframes noteFloat {
+      filter: blur(70px);
 
-  0%, 100% {
-    transform:
-      translateY(0)
-      rotate(-8deg);
+      opacity: 0.75;
 
-    opacity: .5;
-  }
+      animation:
+        rotateBackground 18s linear infinite;
+    }
 
-  50% {
-    transform:
-      translateY(-28px)
-      rotate(10deg);
+    body::after {
+      content: "";
+      position: absolute;
 
-    opacity: 1;
-  }
-}
+      width: 90vw;
+      height: 90vw;
 
-/* صفحه اصلی */
+      background:
+        conic-gradient(
+          from 180deg,
+          #ff1493,
+          #ff7a00,
+          #ff4f9a,
+          #ff9500,
+          #ff1493
+        );
 
-main {
-  width: 100%;
-  min-height: 100vh;
+      border-radius: 50%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+      filter: blur(55px);
 
-  padding: 45px 18px;
-}
+      opacity: 0.55;
 
-.scene {
-  position: relative;
+      animation:
+        rotateBackgroundReverse 12s linear infinite;
+    }
 
-  width: min(900px, 100%);
+    /* دایره‌های نور */
 
-  text-align: center;
-}
+    .light {
+      position: absolute;
 
-/* مدار چرخان */
+      width: 45vw;
+      height: 45vw;
 
-.orbit {
-  position: absolute;
+      border-radius: 50%;
 
-  width: min(650px, 90vw);
-  height: min(650px, 90vw);
+      filter: blur(80px);
 
-  border:
-    1px dashed
-    rgba(255, 122, 0, .25);
+      opacity: 0.5;
 
-  border-radius: 50%;
+      animation:
+        floating 7s ease-in-out infinite alternate;
+    }
 
-  left: 50%;
-  top: 50%;
+    .light.one {
+      background: #ff5a00;
+      top: -20%;
+      left: -15%;
+    }
 
-  transform:
-    translate(-50%, -50%);
+    .light.two {
+      background: #ff1493;
+      bottom: -20%;
+      right: -15%;
 
-  animation:
-    spin 28s linear infinite;
-}
+      animation-delay: -3s;
+    }
 
-.orbit::before,
-.orbit::after {
-  content: "";
+    /* لایه شیشه‌ای */
 
-  position: absolute;
-
-  width: 14px;
-  height: 14px;
-
-  background: #ff7a00;
-
-  border-radius: 50%;
-
-  box-shadow:
-    0 0 25px #ff7a00;
-}
-
-.orbit::before {
-  top: 8%;
-  left: 50%;
-}
-
-.orbit::after {
-  bottom: 8%;
-  right: 50%;
-}
-
-@keyframes spin {
-
-  to {
-    transform:
-      translate(-50%, -50%)
-      rotate(360deg);
-  }
-}
-
-/* میکروفن */
-
-.mic {
-  position: relative;
-
-  display: inline-flex;
-
-  width: 115px;
-  height: 115px;
-
-  align-items: center;
-  justify-content: center;
-
-  border: 5px solid #111;
-
-  border-radius:
-    45% 45% 50% 50%;
-
-  background: #ff7a00;
-
-  box-shadow:
-    8px 8px 0 #ffb000,
-    0 0 45px
-    rgba(255, 122, 0, .45);
-
-  font-size: 55px;
-
-  transform: rotate(-5deg);
-
-  animation:
-    micBounce 2.8s ease-in-out infinite;
-}
-
-@keyframes micBounce {
-
-  0%, 100% {
-    transform:
-      rotate(-5deg)
-      translateY(0);
-  }
-
-  50% {
-    transform:
-      rotate(5deg)
-      translateY(-12px);
-  }
-}
-
-/* عنوان */
-
-h1 {
-  position: relative;
-
-  margin:
-    38px 0 15px;
-
-  font-size:
-    clamp(35px, 9vw, 78px);
-
-  line-height: 1.35;
-
-  color: #ff7a00;
-
-  text-shadow:
-    4px 4px 0 #111,
-    7px 7px 0 #ffb000,
-    0 0 30px
-    rgba(255, 122, 0, .35);
-
-  transform: rotate(-1deg);
-}
-
-/* زیرعنوان */
-
-.sub {
-  font-size:
-    clamp(20px, 4.5vw, 31px);
-
-  color: #eee;
-
-  margin:
-    0 auto 30px;
-
-  line-height: 2;
-}
-
-/* موج صدا */
-
-.wave {
-  height: 80px;
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  gap: 7px;
-
-  margin:
-    20px 0 30px;
-}
-
-.bar {
-  width: 6px;
-
-  border-radius: 20px;
-
-  background: #ff7a00;
-
-  box-shadow:
-    0 0 12px
-    rgba(255, 122, 0, .5);
-
-  animation:
-    equalizer 1s ease-in-out infinite alternate;
-}
-
-.bar:nth-child(1) {
-  height: 22px;
-  animation-delay: -.1s;
-}
-
-.bar:nth-child(2) {
-  height: 48px;
-  animation-delay: -.3s;
-}
-
-.bar:nth-child(3) {
-  height: 68px;
-  animation-delay: -.5s;
-}
-
-.bar:nth-child(4) {
-  height: 38px;
-  animation-delay: -.7s;
-}
-
-.bar:nth-child(5) {
-  height: 76px;
-  animation-delay: -.2s;
-}
-
-.bar:nth-child(6) {
-  height: 45px;
-  animation-delay: -.6s;
-}
-
-.bar:nth-child(7) {
-  height: 64px;
-  animation-delay: -.4s;
-}
-
-.bar:nth-child(8) {
-  height: 30px;
-  animation-delay: -.8s;
-}
-
-.bar:nth-child(9) {
-  height: 58px;
-  animation-delay: -.1s;
-}
-
-@keyframes equalizer {
-
-  to {
-    transform:
-      scaleY(.35);
-  }
-}
-
-/* متن اصلی */
-
-.message {
-  max-width: 720px;
-
-  margin: 0 auto;
-
-  padding: 12px;
-
-  font-size:
-    clamp(23px, 5vw, 35px);
-
-  line-height: 2.3;
-
-  color: #fff;
-
-  text-shadow:
-    0 0 15px
-    rgba(255,255,255,.08);
-}
-
-.thanks {
-  display: block;
-
-  margin-top: 12px;
-
-  color: #ffb000;
-
-  font-size:
-    clamp(25px, 5vw, 38px);
-
-  transform: rotate(1deg);
-}
-
-/* دکمه */
-
-.pay-wrap {
-  margin-top: 38px;
-
-  position: relative;
-
-  display: inline-block;
-}
-
-.pay-button {
-  position: relative;
-
-  display: inline-block;
-
-  padding: 20px 30px;
-
-  min-width:
-    min(520px, 90vw);
-
-  background: #ff7a00;
-
-  color: #0a0a0a;
-
-  text-decoration: none;
-
-  font-size:
-    clamp(18px, 4.5vw, 26px);
-
-  line-height: 1.8;
-
-  border: 5px solid #111;
-
-  border-radius:
-    35px 18px 35px 18px;
-
-  box-shadow:
-    9px 9px 0 #ffb000,
-    0 0 35px
-    rgba(255, 122, 0, .25);
-
-  transition: .25s ease;
-
-  animation:
-    buttonPulse 2.5s ease-in-out infinite;
-}
-
-.pay-button:hover {
-  transform:
-    translate(4px, 4px)
-    rotate(-2deg)
-    scale(1.03);
-
-  box-shadow:
-    4px 4px 0 #ffb000;
-}
-
-.pay-button:active {
-  transform:
-    translate(8px, 8px);
-
-  box-shadow:
-    0 0 0 #ffb000;
-}
-
-@keyframes buttonPulse {
-
-  0%, 100% {
-    filter: brightness(1);
-  }
-
-  50% {
-    filter: brightness(1.08);
-  }
-}
-
-/* ستاره‌ها */
-
-.star {
-  position: absolute;
-
-  color: #ffb000;
-
-  font-size: 28px;
-
-  animation:
-    starSpin 3s linear infinite;
-}
-
-.s1 {
-  top: -30px;
-  left: -25px;
-}
-
-.s2 {
-  top: 10px;
-  right: -38px;
-  animation-delay: -1s;
-}
-
-.s3 {
-  bottom: -30px;
-  left: 10px;
-  animation-delay: -2s;
-}
-
-.s4 {
-  bottom: 0;
-  right: -25px;
-  animation-delay: -.5s;
-}
-
-@keyframes starSpin {
-
-  50% {
-    transform:
-      rotate(180deg)
-      scale(1.25);
-  }
-
-  100% {
-    transform:
-      rotate(360deg);
-  }
-}
-
-/* خطوط */
-
-.line {
-  height: 3px;
-
-  width: 150px;
-
-  margin: 25px auto;
-
-  background: #ff7a00;
-
-  border-radius: 10px;
-
-  box-shadow:
-    0 0 15px
-    rgba(255,122,0,.6);
-}
-
-.line.long {
-  width: 280px;
-  opacity: .35;
-}
-
-/* پایین صفحه */
-
-.footer {
-  margin-top: 50px;
-
-  font-size: 18px;
-
-  color: #aaa;
-
-  letter-spacing: 1px;
-}
-
-.footer span {
-  color: #ff7a00;
-}
-
-/* موبایل */
-
-@media (max-width: 600px) {
-
-  main {
-    padding: 35px 12px;
-  }
-
-  .mic {
-    width: 90px;
-    height: 90px;
-    font-size: 43px;
-  }
-
-  h1 {
-    margin-top: 30px;
-  }
-
-  .orbit {
-    width: 100vw;
-    height: 100vw;
-  }
-
-  .pay-button {
-    min-width: 0;
-    width: 92vw;
-    padding: 17px 14px;
-  }
-
-  .note {
-    font-size: 25px;
-  }
-
-  .bubble {
-    opacity: .55;
-  }
-}
-
-/* کاهش انیمیشن */
-
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-  }
-}
-</style>
+    .overlay {
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle,
+          transparent 0%,
+          rgba(0, 0, 0, 0.25) 50%,
+          rgba(0, 0, 0, 0.65) 100%
+        );
+
+      z-index: 2;
+    }
+
+    /* نوشته */
+
+    .soon {
+      position: relative;
+
+      z-index: 5;
+
+      color: white;
+
+      font-family:
+        "Noto Nastaliq Urdu",
+        serif;
+
+      font-size: clamp(60px, 13vw, 150px);
+
+      font-weight: 400;
+
+      text-align: center;
+
+      text-shadow:
+        0 0 10px rgba(255,255,255,0.8),
+        0 0 30px #ff1493,
+        0 0 60px #ff5a00,
+        5px 8px 0 rgba(0,0,0,0.25);
+
+      animation:
+        textGlow 3s ease-in-out infinite alternate,
+        textFloat 4s ease-in-out infinite;
+    }
+
+    /* چرخش پس‌زمینه */
+
+    @keyframes rotateBackground {
+      from {
+        transform: rotate(0deg) scale(1);
+      }
+
+      to {
+        transform: rotate(360deg) scale(1);
+      }
+    }
+
+    @keyframes rotateBackgroundReverse {
+      from {
+        transform: rotate(360deg) scale(1);
+      }
+
+      to {
+        transform: rotate(0deg) scale(1);
+      }
+    }
+
+    /* حرکت نور */
+
+    @keyframes floating {
+      0% {
+        transform:
+          translate(0, 0)
+          scale(1);
+      }
+
+      50% {
+        transform:
+          translate(12vw, -8vh)
+          scale(1.25);
+      }
+
+      100% {
+        transform:
+          translate(-8vw, 10vh)
+          scale(0.9);
+      }
+    }
+
+    /* درخشش متن */
+
+    @keyframes textGlow {
+      0% {
+        text-shadow:
+          0 0 10px rgba(255,255,255,0.7),
+          0 0 25px #ff1493,
+          0 0 45px #ff5a00;
+      }
+
+      100% {
+        text-shadow:
+          0 0 20px white,
+          0 0 45px #ff1493,
+          0 0 85px #ff5a00;
+      }
+    }
+
+    /* حرکت خیلی نرم متن */
+
+    @keyframes textFloat {
+      0%,
+      100% {
+        transform:
+          translateY(0)
+          rotate(-1deg);
+      }
+
+      50% {
+        transform:
+          translateY(-12px)
+          rotate(1deg);
+      }
+    }
+
+    /* موبایل */
+
+    @media (max-width: 600px) {
+      body::before {
+        width: 180vw;
+        height: 180vw;
+      }
+
+      body::after {
+        width: 130vw;
+        height: 130vw;
+      }
+
+      .soon {
+        font-size: 70px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- پس‌زمینه -->
+  <div class="light one"></div>
+  <div class="light two"></div>
 
-<div class="background">
+  <div class="overlay"></div>
 
-  <div class="grid"></div>
-
-  <div class="glow one"></div>
-  <div class="glow two"></div>
-
-  <div class="bubble b1"></div>
-  <div class="bubble b2"></div>
-  <div class="bubble b3"></div>
-  <div class="bubble b4"></div>
-
-  <div class="note n1">♪</div>
-  <div class="note n2">♫</div>
-  <div class="note n3">♬</div>
-  <div class="note n4">♪</div>
-  <div class="note n5">♫</div>
-
-</div>
-
-
-<!-- محتوای اصلی -->
-
-<main>
-
-  <section class="scene">
-
-    <div class="orbit"></div>
-
-
-    <!-- میکروفن -->
-
-    <div class="mic">
-      🎤
-    </div>
-
-
-    <!-- عنوان -->
-
-    <h1>
-      حمایت مالی از موزیک گیت گیت
-    </h1>
-
-
-    <div class="line"></div>
-
-
-    <div class="sub">
-      اگه موزیک رو دوست داشتی، ازش حمایت کن 🧡
-    </div>
-
-
-    <!-- موج موسیقی -->
-
-    <div class="wave">
-
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-
-    </div>
-
-
-    <!-- متن -->
-
-    <div class="message">
-
-      حمایت شما دلگرمی ما برای ساخت موزیک های آینده‌ست.
-
-      <span class="thanks">
-        سپاس، مهدی.
-      </span>
-
-    </div>
-
-
-    <!-- دکمه -->
-
-    <div class="pay-wrap">
-
-      <span class="star s1">✦</span>
-      <span class="star s2">✧</span>
-      <span class="star s3">✦</span>
-      <span class="star s4">✧</span>
-
-
-      <!-- لینک پرداخت را اینجا قرار بده -->
-
-      <a
-        class="pay-button"
-        href="#"
-        target="_blank"
-      >
-        از اینجا پرداخت کن
-        <br>
-        موزیک برات ارسال میشه. 🧡
-      </a>
-
-    </div>
-
-
-    <div class="line long"></div>
-
-
-    <div class="footer">
-
-      <span>♪</span>
-
-      موسیقی، شعر، حس
-
-      <span>♫</span>
-
-    </div>
-
-  </section>
-
-</main>
+  <div class="soon">
+    به زودی ..
+  </div>
 
 </body>
 </html>
